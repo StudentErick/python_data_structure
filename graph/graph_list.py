@@ -60,6 +60,7 @@ class GraphList:
 
 
 # G = GraphList(5)
+
 # while True:
 #     u, v, w = input().split(' ')
 #     if int(u) < 0 or int(v) < 0:
