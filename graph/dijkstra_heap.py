@@ -10,10 +10,10 @@ def dijkstra(Graph, start=0):
     S = [0] * num_node
     vis = [False] * num_node
     S[start] = 1
-    for v, w in graph[start]:
-        dist[v] = w
-        path[v] = start
-    dist[v] = 0
+    for node in graph[start]:
+        dist[node.v] = node.w
+        path[node.v] = start
+    dist[start] = 0
     path[start] = start
     Q = [(dist[start], start, 0)]
     heapify(Q)
@@ -23,7 +23,9 @@ def dijkstra(Graph, start=0):
         if vis[u] is True:
             continue
         vis[u] = True
-        for v, w in graph[u]:
+        for node in graph[u]:
+            v = node.v
+            w = node.w
             if dist[v] > dist[u] + w:
                 dist[v] = dist[u] + w
                 path[v] = u

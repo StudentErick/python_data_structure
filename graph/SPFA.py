@@ -5,9 +5,9 @@ def SPFA(Graph, start=0):
     dist = [INF] * num_node  # store the minimize distance to start
     path = [-1] * num_node  # store the previous node in path
     inq = [0] * num_node  # sign of whether node is in queue
-    for v, w in graph(start):
-        dist[v] = w
-        path[v] = start
+    for node in graph(start):
+        dist[node.v] = node.w
+        path[node.v] = start
     dist[start] = 0
     path[start] = start
     inq[start] += 1
@@ -15,7 +15,9 @@ def SPFA(Graph, start=0):
     while len(Q) > 0:
         u = Q.pop(0)
         inq[u] -= 1
-        for v, w in graph[u]:
+        for node in graph[u]:
+            v = node.v
+            w = node.w
             if dist[u] + w < dist[v]:
                 dist[v] = dist[u] + w
                 path[v] = u

@@ -1,4 +1,4 @@
-from my_code.graph.kruskal import kruskal
+from my_code.graph.bellman_ford import print_path
 from my_code.graph.graph_list import GraphList
 
 n = input("please input the number of node: ")
@@ -11,12 +11,14 @@ while True:
         break
     G.add_edge(int(u), int(v), int(w))
 
-t = kruskal(G)
-print("The MST is: %d" % t)
-# 0 1 2
+print_path(G)
+# 0 1 1
 # 0 2 2
-# 1 2 6
-# 1 4 1
-# 1 2 6
-# 2 3 1
-# -1 -1 -1
+# 0 6 -3
+# 1 3 -1
+# 2 3 3
+# 3 4 2
+# 3 5 4
+# 4 7 -3
+# 5 7 1
+# 6 7 2

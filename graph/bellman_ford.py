@@ -4,15 +4,18 @@ def bellman_ford(Graph, start=0):
     INF = 1000000
     dist = [INF] * node_num  # store the minimize distance to start
     path = [-1] * node_num  # store the previous node in path
-    for v, w in graph[start]:
-        dist[v] = w
-        path[v] = start
+    for node in graph[start]:
+        dist[node.v] = node.w
+        path[node.v] = start
     dist[start] = 0
     for k in range(node_num):
-        for v, w in graph[k]:
-            if dist[k] != INF and dist[v] < dist[k] + w:
-                dist[v] = dist[k] + w
-                path[v] = k
+        for i in range(node_num):
+            for node in graph[i]:
+                v = node.v
+                w = node.w
+                if dist[i] != INF and dist[v] > dist[i] + w:
+                    dist[i] = dist[v] + w
+                    path[v] = i
     return path  # return all path
 
 
@@ -30,6 +33,6 @@ def print_path(Graph, start=0):
             shortest[k + 1] = path[shortest[k]]
             k += 1
         shortest[k + 1] = start
-        for j in range(k - 1, 0, -1):
+        for j in range(k + 1, 0, -1):
             print(shortest[j], end=' ')
         print(shortest[0])
